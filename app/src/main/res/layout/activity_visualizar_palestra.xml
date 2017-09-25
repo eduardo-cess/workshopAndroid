@@ -14,6 +14,31 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="38dp"
         android:layout_marginTop="29dp"
+        android:text="Título"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="165dp" />
+
+    <TextView
+        android:id="@+id/textView_sugestao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:text="Sugestão"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="165dp"
+        android:layout_below="@+id/textView_avaliacao"
+        android:layout_alignStart="@+id/textView_avaliacao" />
+
+    <TextView
+        android:id="@+id/textView_avaliacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/visualizarTipo"
+        android:layout_below="@+id/visualizarTipo"
+        android:layout_marginTop="32dp"
+        android:text="Avaliação"
         android:textSize="18sp"
         tools:layout_editor_absoluteX="162dp"
         tools:layout_editor_absoluteY="165dp" />
@@ -25,6 +50,7 @@
         android:layout_alignStart="@+id/visualizarTitulo"
         android:layout_below="@+id/visualizarTitulo"
         android:layout_marginTop="35dp"
+        android:text="Tipo"
         android:textSize="18sp"
         tools:layout_editor_absoluteX="162dp"
         tools:layout_editor_absoluteY="165dp" />
@@ -33,18 +59,19 @@
         android:id="@+id/visualizar_avaliar_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
         android:text="Avaliar Palestra"
-        android:layout_below="@+id/visualizarTipo"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="135dp" />
 
     <ImageButton
         android:id="@+id/visualizar_delete_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/visualizarTitulo"
-        android:layout_marginEnd="73dp"
+        android:layout_width="155dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp"
+        android:background="@android:color/holo_red_dark"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
 </RelativeLayout>

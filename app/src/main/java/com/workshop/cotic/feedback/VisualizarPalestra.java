@@ -20,6 +20,9 @@ public class VisualizarPalestra extends AppCompatActivity implements View.OnClic
     Bundle extras;
     TextView textViewTitulo;
     TextView textViewTipo;
+    TextView textViewAvaliacao;
+    TextView textViewSugestao;
+
     DataBaseHelper helper;
     private AlertDialog.Builder dialog;
     private Button mAvaliarButton;
@@ -32,24 +35,57 @@ public class VisualizarPalestra extends AppCompatActivity implements View.OnClic
 
         textViewTitulo = (TextView)findViewById(R.id.visualizarTitulo);
         textViewTipo = (TextView)findViewById(R.id.visualizarTipo);
+        textViewAvaliacao = (TextView)findViewById(R.id.textView_avaliacao);
+        textViewSugestao = (TextView)findViewById(R.id.textView_sugestao);
         mAvaliarButton = (Button) findViewById(R.id.visualizar_avaliar_btn);
         mApagarPalestra = (ImageButton) findViewById(R.id.visualizar_delete_btn);
 
         mAvaliarButton.setOnClickListener(this);
         mApagarPalestra.setOnClickListener(this);
 
-
         helper = new DataBaseHelper(this);
-        int id = getIdExtra();
-        String[] campos = {"titulo", "tipo"};
-        String table = "palestra";
-        Cursor cursor = helper.carregaDadoById(id , campos, table);
 
-        String titulo = cursor.getString(cursor.getColumnIndex("titulo"));
-        String tipo = cursor.getString(cursor.getColumnIndex("tipo"));
-//
+        int id = getIdExtra();
+        String[] camposPalestra = {"titulo", "tipo"};
+        String tablePalestra = "palestra";
+        Cursor cursorPalestra = helper.carregaDadoById(id , camposPalestra, tablePalestra);
+        String titulo = cursorPalestra.getString(cursorPalestra.getColumnIndex("titulo"));
+        String tipo = cursorPalestra.getString(cursorPalestra.getColumnIndex("tipo"));
+        switch (tipo){
+            case ("1"):
+                tipo = "Palestra";
+                break;
+            case ("2"):
+                tipo = "Minicurso";
+                break;
+        }
         textViewTitulo.setText("Título: "+titulo);
         textViewTipo.setText("Tipo: "+tipo);
+
+        String[] camposAvaliacao = {"avaliacao", "sugestao"};
+        Cursor cursorAvaliacao = helper.carregaAvaliacaoByIdPalestra(id,camposAvaliacao );
+        if(cursorAvaliacao.moveToFirst()) {
+            String avaliacao = cursorAvaliacao.getString(cursorAvaliacao.getColumnIndex("avaliacao"));
+            String sugestao = cursorAvaliacao.getString(cursorAvaliacao.getColumnIndex("sugestao"));
+
+            switch (avaliacao){
+                case ("1"):
+                    avaliacao = "Gostei";
+                    break;
+                case ("2"):
+                    avaliacao = "Razoável";
+                    break;
+                case ("3"):
+                    avaliacao = "Ruim";
+                    break;
+            }
+
+            textViewAvaliacao.setText("Avaliação: " + avaliacao);
+            textViewSugestao.setText("Sugestão: " + sugestao);
+        }else{
+            textViewAvaliacao.setText("Avaliação: Não cadastrado");
+            textViewSugestao.setText("Sugestão:  Não cadastrado");
+        }
     }
 
 

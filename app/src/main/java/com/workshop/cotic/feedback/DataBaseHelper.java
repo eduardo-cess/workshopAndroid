@@ -103,27 +103,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
 
     // Carrega avaliação de uma palestra
-    public void carregaAvaliacaoByIdPalestra(int idPalestra, String[] campos){
-//        Cursor cursor;
-//        String where = "palestra_id =" + idPalestra;
-////        Map<String, String> avaliacao = new HashMap<String, String>();
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        cursor = db.query("avaliacao", campos, where, null, null, null, null, null);
-//        Log.i("Resultado nome = ", cursor.getString(1));
-//        cursor.getString(2);
-//        cursor.moveToFirst();
-//        if(cursor != null){
-//            int indiceColunaAvaliacao = cursor.getColumnIndex("avaliacao");
-//            int indiceColunaSugestao = cursor.getColumnIndex("sugestao");
-//            int indiceColunaPalestra = cursor.getColumnIndex("palestra_id");
-//            Log.i("Resultado nome = ", "teste");
-//            Log.i("Resultado nome = ", cursor.getString(indiceColunaSugestao));
-//            Log.i("Resultado Idade = ", cursor.getString(indiceColunaPalestra));
-//            cursor.moveToNext();
-//
-//        }
+    public Cursor carregaAvaliacaoByIdPalestra(int idPalestra, String[] campos){
+        Cursor cursor;
+        String where = "palestra_id =" + idPalestra;
+        SQLiteDatabase db = this.getReadableDatabase();
+        cursor = db.query("avaliacao", campos, where, null, null, null, null, null);
+        cursor.moveToFirst();
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
 
-
+        return cursor;
     }
 
 //  Não sei qual era a intenção de fazer isso

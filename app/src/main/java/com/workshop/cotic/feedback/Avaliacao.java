@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ThemedSpinnerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,13 +40,25 @@ public class Avaliacao extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int itemChecked = mAvaliacaoRadioGroup.getCheckedRadioButtonId();
+                switch (itemChecked){
+                    case (R.id.radioButton_gostei):
+                        itemChecked = 1;
+                        break;
+                    case (R.id.radioButton_razoavel):
+                        itemChecked = 2;
+                        break;
+                    case (R.id.radioButton_ruim):
+                        itemChecked = 3;
+                        break;
+                }
                 String sugestao = mAvaliacaoText.getText().toString();
                 if(itemChecked < 0 || sugestao.equals("")){
                     Toast.makeText(Avaliacao.this, "Por favor preencha os campos", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     extras = getIntent().getExtras();
-                    int idPalestra = extras.getInt("id");
+                    int idPalestra = extras.getInt("idPalestra");
+                    //Log.i("idPalestra", "idPalestra: "+idPalestra);
                     helper.inserirAvaliacao(itemChecked, sugestao, idPalestra);
                     Toast.makeText(Avaliacao.this, "Avaliação cadastrada com Sucesso", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Avaliacao.this, MainActivity.class));
