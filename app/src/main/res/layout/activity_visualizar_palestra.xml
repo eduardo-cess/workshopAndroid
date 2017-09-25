@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context="com.workshop.cotic.feedback.VisualizarPalestra">
 
     <TextView
@@ -23,13 +24,13 @@
         android:id="@+id/textView_sugestao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView_avaliacao"
+        android:layout_below="@+id/textView_avaliacao"
         android:layout_marginTop="27dp"
         android:text="Sugestão"
         android:textSize="18sp"
         tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="165dp"
-        android:layout_below="@+id/textView_avaliacao"
-        android:layout_alignStart="@+id/textView_avaliacao" />
+        tools:layout_editor_absoluteY="165dp" />
 
     <TextView
         android:id="@+id/textView_avaliacao"
@@ -59,15 +60,19 @@
         android:id="@+id/visualizar_avaliar_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Avaliar Palestra"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="135dp" />
+        android:layout_marginBottom="135dp"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:text="Avaliar Palestra"
+        android:textColor="@android:color/white" />
 
     <ImageButton
         android:id="@+id/visualizar_delete_btn"
         android:layout_width="155dp"
-        android:layout_height="35dp"
+        android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="46dp"
