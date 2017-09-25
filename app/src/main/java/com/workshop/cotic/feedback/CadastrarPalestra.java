@@ -26,8 +26,6 @@ public class CadastrarPalestra extends AppCompatActivity {
 
         //Database connection
         final SQLiteDatabase database = openOrCreateDatabase("app", MODE_PRIVATE, null);
-        //database.execSQL("DROP TABLE palestra;");
-        //database.execSQL("CREATE TABLE IF NOT EXISTS palestra(_id INTEGER PRIMARY KEY AUTOINCREMENT,titulo VARCHAR, tipo INT(3));");
 
         titulo = (EditText) findViewById(R.id.cadastro_titulo);
         radioGroupTipoApresentacao = (RadioGroup) findViewById(R.id.radioGroupTipoApresentacao);

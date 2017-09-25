@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.R.attr.id;
+
 public class VisualizarPalestra extends AppCompatActivity implements View.OnClickListener {
 
     Bundle extras;
@@ -45,25 +47,15 @@ public class VisualizarPalestra extends AppCompatActivity implements View.OnClic
 
         helper = new DataBaseHelper(this);
 
-        int id = getIdExtra();
-        String[] camposPalestra = {"titulo", "tipo"};
-        String tablePalestra = "palestra";
-        Cursor cursorPalestra = helper.carregaDadoById(id , camposPalestra, tablePalestra);
-        String titulo = cursorPalestra.getString(cursorPalestra.getColumnIndex("titulo"));
-        String tipo = cursorPalestra.getString(cursorPalestra.getColumnIndex("tipo"));
-        switch (tipo){
-            case ("1"):
-                tipo = "Palestra";
-                break;
-            case ("2"):
-                tipo = "Minicurso";
-                break;
-        }
-        textViewTitulo.setText("Título: "+titulo);
-        textViewTipo.setText("Tipo: "+tipo);
+        int idPalestra = getIdExtra();
 
+        buildInformationPalestra(idPalestra);
+        buildInformationAvaliacao(idPalestra);
+    }
+
+    private void buildInformationAvaliacao(int idPalestra) {
         String[] camposAvaliacao = {"avaliacao", "sugestao"};
-        Cursor cursorAvaliacao = helper.carregaAvaliacaoByIdPalestra(id,camposAvaliacao );
+        Cursor cursorAvaliacao = helper.carregaAvaliacaoByIdPalestra(idPalestra,camposAvaliacao );
         if(cursorAvaliacao.moveToFirst()) {
             String avaliacao = cursorAvaliacao.getString(cursorAvaliacao.getColumnIndex("avaliacao"));
             String sugestao = cursorAvaliacao.getString(cursorAvaliacao.getColumnIndex("sugestao"));
@@ -86,6 +78,24 @@ public class VisualizarPalestra extends AppCompatActivity implements View.OnClic
             textViewAvaliacao.setText("Avaliação: Não cadastrado");
             textViewSugestao.setText("Sugestão:  Não cadastrado");
         }
+    }
+
+    private void buildInformationPalestra(int idPalestra) {
+        String[] camposPalestra = {"titulo", "tipo"};
+        String tablePalestra = "palestra";
+        Cursor cursorPalestra = helper.carregaDadoById(idPalestra , camposPalestra, tablePalestra);
+        String titulo = cursorPalestra.getString(cursorPalestra.getColumnIndex("titulo"));
+        String tipo = cursorPalestra.getString(cursorPalestra.getColumnIndex("tipo"));
+        switch (tipo){
+            case ("1"):
+                tipo = "Palestra";
+                break;
+            case ("2"):
+                tipo = "Minicurso";
+                break;
+        }
+        textViewTitulo.setText("Título: "+titulo);
+        textViewTipo.setText("Tipo: "+tipo);
     }
 
 

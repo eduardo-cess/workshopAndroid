@@ -66,20 +66,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    //Altera um registro por ID Dúvida
-    public void alteraRegistroById(int id, String frase){
-        ContentValues valores;
-        String where = "_id=" + id;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        valores = new ContentValues();
-        valores.put("frase", frase); // o que é essa frase
-
-        db.update("frases",valores,where,null);
-        db.close();
-    }
-
     // Apaga um registro de uma tabela conforme a condição where
     public void deleteRegistro(String nomeTabela, String condicaoWhere){
         getWritableDatabase().delete(nomeTabela, condicaoWhere, null);
@@ -88,7 +74,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     //Carrega dados por id
     public Cursor carregaDadoById(int id, String[] campos, String table){
         Cursor cursor;
-        //String[] campos =  {"titulo", "tipo"};
         String where = "_id =" + id;
         SQLiteDatabase db = this.getReadableDatabase();
         cursor = db.query(table,campos,where, null, null, null, null, null);
@@ -100,8 +85,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-
-
     // Carrega avaliação de uma palestra
     public Cursor carregaAvaliacaoByIdPalestra(int idPalestra, String[] campos){
         Cursor cursor;
@@ -112,30 +95,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         if(cursor != null){
             cursor.moveToFirst();
         }
-
         return cursor;
     }
 
-//  Não sei qual era a intenção de fazer isso
-    public void alteraRegistro(int condicaoWhere, String[] valores, String frase){
-//
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues valores;
-//        valores = new ContentValues();
-//        for (int i = 0; i < valores. ; i++){
-//
-//        }
-//        valores.put("frase", frase);
-//
-//        db.update(nomeTabela,valores,where,null);
-//        db.close();
-    }
-// Não faz Sentido
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("DROP TABLE IF EXIST palestra");
-//        db.execSQL("DROP TABLE IF EXIST avaliacao");
-//        onCreate(db);
+        db.execSQL("DROP TABLE IF EXIST palestra");
+        db.execSQL("DROP TABLE IF EXIST avaliacao");
+        onCreate(db);
     }
 
 }

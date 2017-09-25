@@ -30,12 +30,6 @@ public class Avaliacao extends AppCompatActivity {
         mEnviarAvaliacao = (Button) findViewById(R.id.avaliacao_button_enviar);
         mAvaliacaoRadioGroup = (RadioGroup) findViewById(R.id.avaliacao_radioGroup);
 
-//        extras = getIntent().getExtras();
-//        int idPalestra = extras.getInt("idPalestra");
-//        String[] campos = {"avaliacao", "sugestao", "palestra_id"};
-//        helper.carregaAvaliacaoByIdPalestra(idPalestra, campos);
-
-
         mEnviarAvaliacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +52,6 @@ public class Avaliacao extends AppCompatActivity {
                 else {
                     extras = getIntent().getExtras();
                     int idPalestra = extras.getInt("idPalestra");
-                    //Log.i("idPalestra", "idPalestra: "+idPalestra);
                     helper.inserirAvaliacao(itemChecked, sugestao, idPalestra);
                     Toast.makeText(Avaliacao.this, "Avaliação cadastrada com Sucesso", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Avaliacao.this, MainActivity.class));

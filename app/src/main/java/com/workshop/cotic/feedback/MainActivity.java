@@ -65,22 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 0
         );
 
-//        final SQLiteDatabase database = openOrCreateDatabase("app", MODE_PRIVATE, null);
-//        final Cursor cursor = database.rawQuery("SELECT _id, titulo, tipo FROM palestra", null);
-//        cursor.moveToFirst();
-//        while(cursor.moveToNext()){
-//            String titulo = cursor.getString(cursor.getColumnIndex("titulo"));
-//            Log.i("id", "id: "+cursor.getString(cursor.getColumnIndex("id")));
-//            Log.i("titulo", "titulo: "+cursor.getString(cursor.getColumnIndex("titulo")));
-//            Log.i("tipo", "tipo: "+cursor.getString(cursor.getColumnIndex("tipo")));
-//
-//            palestras.add(titulo);
-//        }
-//
-//        ArrayAdapter<String> adapterPalestras = new ArrayAdapter<String>(
-//                MainActivity.this,
-//                android.R.layout.simple_list_item_1, palestras);
-
         mListPalestra.setAdapter(adapterPalestras);
 
         mListPalestra.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -92,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, VisualizarPalestra.class);
                 intent.putExtra("id", codigo);
                 startActivity(intent);
-                //finish();
             }
         });
     }
