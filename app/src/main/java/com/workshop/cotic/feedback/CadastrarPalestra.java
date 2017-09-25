@@ -18,6 +18,7 @@ public class CadastrarPalestra extends AppCompatActivity {
     private EditText titulo;
     private RadioGroup radioGroupTipoApresentacao;
     private Button enviar;
+    DataBaseHelper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class CadastrarPalestra extends AppCompatActivity {
     }
 
     void inserePalestra(String titulo, int radioButtonTipoId, SQLiteDatabase database){
-        switch (radioButtonTipoId){
+            switch (radioButtonTipoId){
             case (R.id.radioButton_palestra):
                 radioButtonTipoId = 1;
                 break;
@@ -59,7 +60,8 @@ public class CadastrarPalestra extends AppCompatActivity {
                 radioButtonTipoId = 2;
                 break;
         }
-        database.execSQL("INSERT INTO palestra (titulo, tipo) VALUES ('"+titulo+"',"+radioButtonTipoId+")");
+        helper = new DataBaseHelper(this);
+        helper.inserirPalestra(titulo,radioButtonTipoId);
         startActivity(new Intent(CadastrarPalestra.this, MainActivity.class));
 
     }
