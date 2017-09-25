@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FeedBack.iml" filepath="$PROJECT_DIR$/FeedBack.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/workshopAndroid.iml" filepath="$PROJECT_DIR$/workshopAndroid.iml" />
     </modules>
   </component>
 </project>
