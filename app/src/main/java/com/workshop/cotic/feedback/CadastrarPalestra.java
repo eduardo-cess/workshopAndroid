@@ -46,7 +46,6 @@ public class CadastrarPalestra extends AppCompatActivity {
 
             }
         });
-
     }
 
     void inserePalestra(String titulo, int radioButtonTipoId, SQLiteDatabase database){

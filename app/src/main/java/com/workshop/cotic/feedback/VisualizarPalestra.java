@@ -29,6 +29,7 @@ public class VisualizarPalestra extends AppCompatActivity implements View.OnClic
     private AlertDialog.Builder dialog;
     private Button mAvaliarButton;
     private ImageButton mApagarPalestra;
+    FeedBackHelper feedBackHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class VisualizarPalestra extends AppCompatActivity implements View.OnClic
             textViewAvaliacao.setText("Avaliação: " + avaliacao);
             textViewSugestao.setText("Sugestão: " + sugestao);
         }else{
-            textViewAvaliacao.setText("Avaliação: Não cadastrado");
+            textViewAvaliacao.setText("Avaliação: Não cadastrada");
             textViewSugestao.setText("Sugestão:  Não cadastrado");
         }
     }
@@ -107,7 +108,9 @@ public class VisualizarPalestra extends AppCompatActivity implements View.OnClic
             startActivity(avaliacaoIntent);
         }
         if(view.getId() == R.id.visualizar_delete_btn){
-            createDialog();
+            feedBackHelper = new FeedBackHelper();
+            feedBackHelper.createDialogExcluirPalestra(dialog, VisualizarPalestra.this , getIdExtra());
+//            createDialog();
         }
 
     }

@@ -1,5 +1,6 @@
 package com.workshop.cotic.feedback;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,24 +27,16 @@ public class MainActivity extends AppCompatActivity {
     private List<String> palestras;
     private DataBaseHelper helper;
     FeedBackHelper feedBackHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mListPalestra = (ListView) findViewById(R.id.mainListPalestra);
-
-        helper = new DataBaseHelper(this);
-        String[] campos =  {"_id","titulo", "tipo"};
-        String[] nomeCampos =  {"_id","titulo"};
-        String table = "palestra";
-        int[] idViews = {R.id.contentMain_idPalestra, R.id.contentMain_titulo};
-
-        final Cursor cursor = helper.carregaDados(campos, table);
-
         feedBackHelper = new FeedBackHelper();
-        Intent intent = new Intent(MainActivity.this, VisualizarPalestra.class);
-        feedBackHelper.showListPalestras(this,R.layout.content_main,cursor,nomeCampos,idViews, mListPalestra, MainActivity.this);
+        int[] idViews = {R.id.contentMain_idPalestra, R.id.contentMain_titulo};
+        feedBackHelper.showListPalestras(this,idViews, mListPalestra, VisualizarPalestra.class);
 //        showListPalestras();
 
 
